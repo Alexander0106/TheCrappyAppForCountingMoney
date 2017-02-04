@@ -31,5 +31,25 @@
   <br>
   <br>
   <button class="btn btn-primary" id="recordsubmit">Submit</button>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    $("#recordsubmit").click(function(){
+      var aaa={
+        use:$("#recorduse").val(),
+        cost:$("#recordcost").val(),
+        date:$("#recorddate").val(),
+        type:$("#reocrdtype").val(),
+      };
+      $("#recorduse").val("");
+      $("#recordcost").val("");
+      $("#recorddate").val("");
+      $("#reocrdtype").val("");
+      aCollection.insert(aaa);
+      aCollection.save();
+    });
+  </script>   
 </body>
 </html>
