@@ -17,6 +17,18 @@
   <br>
   <button class="btn btn-primary" id="latestsubmit">Submit</button>
   <button class="btn btn-warning" onclick="location.href='index.html'">Return</button>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Use</td>
+        <td>Cost</td>
+        <td>Date</td>
+        <td>Type</td>
+      </tr>
+    </thead>
+    <tbody id="a">
+    </tbody>
+  </table>
   <script type="text/javascript">
     var fdb = new ForerunnerDB();
     var db = fdb.db("mydb");
@@ -26,13 +38,13 @@
       return "<tr><td>"+use+"</td><td>"+cost+"</td><td>"+date+"</td><td>"+type+"</td></tr>";
     }
     setTimeout(function(){
-      var students=aCollection.find();
-      for(var i=0;i<students.length;i++){
-        var use=students[i].use;
-        var cost=students[i].cost;
-        var date=students[i].date;
-        var type=students[i].type;
-        $("#students").append(createString(use,cost,date,type))
+      var a=aCollection.find();
+      for(var i=0;i<a.length;i++){
+        var use=a[i].use;
+        var cost=a[i].cost;
+        var date=a[i].date;
+        var type=a[i].type;
+        $("#a").append(createString(use,cost,date,type))
       };
     },500);
   </script>
