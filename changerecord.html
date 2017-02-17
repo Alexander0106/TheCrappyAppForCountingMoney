@@ -34,5 +34,16 @@
   <br>
   <button class="btn btn-primary" id="changerecordsubmit">Submit</button>
   <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    $("#changerecordsubmit").click(function(){
+      if($("#changeuse2").val()==""&&$("#changecost2").val()==""&&$("#changedate2").val()==""&&$("#changetype2").val()==""){
+        alert("Hello");
+      }
+    });
+  </script>
 </body>
 </html>
