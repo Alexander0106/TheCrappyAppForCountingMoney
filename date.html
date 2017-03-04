@@ -17,13 +17,39 @@
   <br>
   <button class="btn btn-primary" id="datesubmit">Submit</button>
   <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <br>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Use</td>
+        <td>Cost</td>
+        <td>Date</td>
+        <td>Type</td>
+      </tr>
+    </thead>
+    <tbody id="a">
+    </tbody>
+  </table>
   <script type="text/javascript">
     var fdb = new ForerunnerDB();
     var db = fdb.db("mydb");
     var aCollection = db.collection('a');
     aCollection.load();
     $("#datesubmit").click(function(){
-      
+      var a=aCollection.find({
+        date:{
+          $gte:$("#dateinput1").val(),
+          $lte:$("#dateinput2").val()
+        }
+      });
+      $("#a").remove();
+      for(var i=0;i<a.length;i++){
+        var use=a[i].use;
+        var cost=a[i].cost;
+        var date=a[i].date;
+        var type=a[i].type;
+        $("#a").append(createString(use,cost,date,type))
+      };
     });
   </script>
 </body>
