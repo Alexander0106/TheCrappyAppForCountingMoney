@@ -45,6 +45,8 @@
           $gte:$("#dateinput1").val(),
           $lte:$("#dateinput2").val()
         }
+      },{
+        $orderBy:{date:-1}
       });
       $("#a tr").remove();
       for(var i=0;i<a.length;i++){
