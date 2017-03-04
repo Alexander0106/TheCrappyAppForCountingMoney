@@ -14,7 +14,17 @@
   <h1>Search with Date</h1>
   From: <input type="date" id="dateinput1"> To: <input type="date" id="dateinput2">
   <br>
+  <br>
   <button class="btn btn-primary" id="datesubmit">Submit</button>
   <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    $("#datesubmit").click(function(){
+      
+    });
+  </script>
 </body>
 </html>
