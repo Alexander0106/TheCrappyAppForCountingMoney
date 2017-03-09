@@ -11,7 +11,52 @@
   <title>Amount</title>
 </head>
 <body>
-  <h1>Search with Amount</h1>
+  <h1>Search with Cost</h1>
+  From: <input type="text" id="costinput1"> To: <input type="text" id="costinput2">
+  <br>
+  <br>
+  <button class="btn btn-primary" id="costsubmit">Submit</button>
   <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <br>
+  <br>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Use</td>
+        <td>Cost</td>
+        <td>Date</td>
+        <td>Type</td>
+      </tr>
+    </thead>
+    <tbody id="a">
+    </tbody>
+  </table>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    function createString(use,cost,date,type){
+      return "<tr><td>"+use+"</td><td>"+cost+"</td><td>"+date+"</td><td>"+type+"</td></tr>";
+    }
+    $("#costsubmit").click(function(){
+      var a=aCollection.find({
+        cost:{
+          $gte:$("#costinput1").val()/1,
+          $lte:$("#costinput2").val()/1
+        }
+      },{
+        $orderBy:{cost:-1}
+      });
+      $("#a tr").remove();
+      for(var i=0;i<a.length;i++){
+        var use=a[i].use;
+        var cost=a[i].cost;
+        var date=a[i].date;
+        var type=a[i].type;
+        $("#a").append(createString(use,cost,date,type))
+      };
+    });
+  </script>
 </body>
 </html>
