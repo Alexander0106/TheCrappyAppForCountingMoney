@@ -47,6 +47,13 @@
           date:$("#changedate1").val(),
           type:$("#changetype1").val()
         });
+      }else{
+        aCollection.updateById(student._id,{
+          use:$("#changeuse2").val(),
+          cost:$("#changecost2").val(),
+          date:$("#changedate2").val(),
+          type:$("#changetype2").val(),
+        });
       }
       $("#changeuse1").val("");
       $("#changecost1").val("");
