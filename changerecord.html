@@ -48,7 +48,13 @@
           type:$("#changetype1").val()
         });
       }else{
-        aCollection.updateById(student._id,{
+        var a=aCollection.find({
+          use:$("#changeuse1").val(),
+          cost:$("#changecost1").val(),
+          date:$("#changedate1").val(),
+          type:$("#changetype1").val()
+        })
+        aCollection.updateById(a._id,{
           use:$("#changeuse2").val(),
           cost:$("#changecost2").val(),
           date:$("#changedate2").val(),
