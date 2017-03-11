@@ -57,8 +57,15 @@
       for(var i=0;i<a.length;i++){
         spending=spending+a[i].cost;
       }
-      $("#times").text("Times:"+times);
-      $("#spending").text("Spending:"+spending);
+      $("#times").text("Times: "+times);
+      $("#spending").text("Spending: "+spending);
+      var a=aCollection.find({
+        date:{
+          $gte:$("#chartinput1").val(),
+          $lte:$("#chartinput2").val()
+        },
+        type:"food"
+      });
     });
   </script>
 </body>
