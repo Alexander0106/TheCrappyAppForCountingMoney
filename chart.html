@@ -52,13 +52,13 @@
           $lte:$("#chartinput2").val()
         }
       });
-      var times=a.length;
-      var spending=0;
+      var ttimes=a.length;
+      var tspending=0;
       for(var i=0;i<a.length;i++){
-        spending=spending+a[i].cost;
+        tspending=tspending+a[i].cost;
       }
-      $("#times").text("Times: "+times);
-      $("#spending").text("Spending: "+spending);
+      $("#times").text("Times: "+ttimes);
+      $("#spending").text("Spending: "+tspending);
       var a=aCollection.find({
         date:{
           $gte:$("#chartinput1").val(),
@@ -66,6 +66,15 @@
         },
         type:"food"
       });
+      var type="food";
+      var spending=0;
+      for(var i=0;i<a.length;i++){
+        spending=spending+a[i].cost;
+      }
+      var price=Math.round(spending/a.length);
+      var times=Math.round(a.length/ttimes*100);
+      spending=Math.round(spending/tspending*100);
+      $("#a").append(createString(type,price,times,spending))
     });
   </script>
 </body>
