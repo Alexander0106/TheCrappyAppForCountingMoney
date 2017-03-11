@@ -55,14 +55,14 @@
       if($("#changeuse2").val()==""&&$("#changecost2").val()==""&&$("#changedate2").val()==""&&$("#changetype2").val()==""){
         aCollection.remove({
           use:$("#changeuse1").val(),
-          cost:$("#changecost1").val(),
+          cost:$("#changecost1").val()/1,
           date:$("#changedate1").val(),
           type:$("#changetype1").val()
         });
       }else{
         var a=aCollection.find({
           use:$("#changeuse1").val(),
-          cost:$("#changecost1").val()/1,
+          cost:$("#changecost1").val(),
           date:$("#changedate1").val(),
           type:$("#changetype1").val()
         })[0];
