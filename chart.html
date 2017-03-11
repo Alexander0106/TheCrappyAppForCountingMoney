@@ -12,6 +12,44 @@
 </head>
 <body>
   <h1>Analysis Chart</h1>
+  From: <input type="date" id="chartinput1">
+  <br>
+  To: <input type="date" id="chartinput2">
+  <br>
+  <br>
+  <button class="btn btn-primary" id="chartsubmit">Submit</button>
   <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <br>
+  <br>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Use</td>
+        <td>Cost</td>
+        <td>Date</td>
+        <td>Type</td>
+      </tr>
+    </thead>
+    <tbody id="a">
+    </tbody>
+  </table>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    function createString(use,cost,date,type){
+      return "<tr><td>"+use+"</td><td>"+cost+"</td><td>"+date+"</td><td>"+type+"</td></tr>";
+    }
+    $("#chartsubmit").click(function(){
+      var a=aCollection.find({
+        date:{
+          $gte:$("#dateinput1").val(),
+          $lte:$("#dateinput2").val()
+        }
+      });
+      
+    });
+  </script>
 </body>
 </html>
