@@ -44,8 +44,8 @@
     $("#chartsubmit").click(function(){
       var a=aCollection.find({
         date:{
-          $gte:$("#dateinput1").val(),
-          $lte:$("#dateinput2").val()
+          $gte:$("#chartinput1").val(),
+          $lte:$("#chartinput2").val()
         },
         type:"food"
       });
