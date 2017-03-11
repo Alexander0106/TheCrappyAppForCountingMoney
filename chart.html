@@ -24,10 +24,10 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <td>Use</td>
-        <td>Cost</td>
-        <td>Date</td>
         <td>Type</td>
+        <td>Price</td>
+        <td>Times(%)</td>
+        <td>Spending(%)</td>
       </tr>
     </thead>
     <tbody id="a">
@@ -38,18 +38,23 @@
     var db = fdb.db("mydb");
     var aCollection = db.collection('a');
     aCollection.load();
-    function createString(use,cost,date,type){
-      return "<tr><td>"+use+"</td><td>"+cost+"</td><td>"+date+"</td><td>"+type+"</td></tr>";
+    function createString(type,price,times,spending){
+      return "<tr><td>"+type+"</td><td>"+price+"</td><td>"+times+"</td><td>"+spending+"</td></tr>";
     }
     $("#chartsubmit").click(function(){
+      $("#a tr").remove();
       var a=aCollection.find({
         date:{
           $gte:$("#chartinput1").val(),
           $lte:$("#chartinput2").val()
-        },
-        type:"food"
+        }
       });
-      console.log(a);
+      var times=a.length;
+      var spending=0;
+      for(var i=0;i<a.length;i++){
+        spending=spending+a[i].cost;
+      }
+      
     });
   </script>
 </body>
