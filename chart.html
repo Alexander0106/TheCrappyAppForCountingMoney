@@ -21,6 +21,8 @@
   <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
   <br>
   <br>
+  <h4 id="h4"></h4>
+  <br>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -54,7 +56,7 @@
       for(var i=0;i<a.length;i++){
         spending=spending+a[i].cost;
       }
-      
+      $("#h4").text("Times:"+times+" Spending:"+spending);
     });
   </script>
 </body>
