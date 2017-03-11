@@ -59,22 +59,48 @@
       }
       $("#times").text("Times: "+ttimes);
       $("#spending").text("Spending: "+tspending);
-      var a=aCollection.find({
-        date:{
-          $gte:$("#chartinput1").val(),
-          $lte:$("#chartinput2").val()
-        },
-        type:"food"
-      });
-      var type="food";
-      var spending=0;
-      for(var i=0;i<a.length;i++){
-        spending=spending+a[i].cost;
+      var j=1;
+      var k="";
+      var g="";
+      while(j<6){
+        if(j==1){
+          k="food";
+          l="Food";
+        }
+        if(j==2){
+          k="transportation";
+          l="Transportation";
+        }
+        if(j==3){
+          k="education";
+          g="Education";
+        }
+        if(j==4){
+          k="deposit";
+          g="Deposit";
+        }
+        if(j==5){
+          k="others";
+          g="Others";
+        }
+        var a=aCollection.find({
+          date:{
+            $gte:$("#chartinput1").val(),
+            $lte:$("#chartinput2").val()
+          },
+          type:k
+        });
+        var type=l;
+        var spending=0;
+        for(var i=0;i<a.length;i++){
+          spending=spending+a[i].cost;
+        }
+        var price=Math.round(spending/a.length);
+        var times=Math.round(a.length/ttimes*100);
+        spending=Math.round(spending/tspending*100);
+        $("#a").append(createString(type,price,times,spending))
+        j=j+1;
       }
-      var price=Math.round(spending/a.length);
-      var times=Math.round(a.length/ttimes*100);
-      spending=Math.round(spending/tspending*100);
-      $("#a").append(createString(type,price,times,spending))
     });
   </script>
 </body>
