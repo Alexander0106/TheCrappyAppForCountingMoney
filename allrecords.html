@@ -24,5 +24,24 @@
     <tbody id="a">
     </tbody>
   </table>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    function createString(use,cost,date,type){
+      return "<tr><td>"+use+"</td><td>"+cost+"</td><td>"+date+"</td><td>"+type+"</td></tr>";
+    }
+    var a=aCollection.find({
+      $orderBy:{cost:-1}
+    });
+    for(var i=0;i<a.length;i++){
+      var use=a[i].use;
+      var cost=a[i].cost;
+      var date=a[i].date;
+      var type=a[i].type;
+      $("#a").append(createString(use,cost,date,type))
+    };
+  </script>
 </body>
 </html>
