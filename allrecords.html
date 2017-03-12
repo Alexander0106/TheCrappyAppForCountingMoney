@@ -12,6 +12,7 @@
 </head>
 <body>
   <h1>All Records</h1>
+  <button class="btn btn-primary" id="allrecordsload">Load</button>
   <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
   <br>
   <br>
@@ -35,16 +36,18 @@
     function createString(use,cost,date,type){
       return "<tr><td>"+use+"</td><td>"+cost+"</td><td>"+date+"</td><td>"+type+"</td></tr>";
     }
-    var a=aCollection.find({
-      $orderBy:{cost:-1}
+    $("#allrecordsload").click(function(){
+      var a=aCollection.find({
+        $orderBy:{cost:-1}
+      });
+      for(var i=0;i<a.length;i++){
+        var use=a[i].use;
+        var cost=a[i].cost;
+        var date=a[i].date;
+        var type=a[i].type;
+        $("#a").append(createString(use,cost,date,type))
+      };
     });
-    for(var i=0;i<a.length;i++){
-      var use=a[i].use;
-      var cost=a[i].cost;
-      var date=a[i].date;
-      var type=a[i].type;
-      $("#a").append(createString(use,cost,date,type))
-    };
   </script>
 </body>
 </html>
