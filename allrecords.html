@@ -37,9 +37,7 @@
       return "<tr><td>"+use+"</td><td>"+cost+"</td><td>"+date+"</td><td>"+type+"</td></tr>";
     }
     $("#allrecordsload").click(function(){
-      var a=aCollection.find({
-        $orderBy:{date:-1}
-      });
+      var a=aCollection.find();
       for(var i=0;i<a.length;i++){
         var use=a[i].use;
         var cost=a[i].cost;
