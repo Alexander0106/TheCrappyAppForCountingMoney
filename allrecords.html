@@ -38,7 +38,7 @@
     }
     $("#allrecordsload").click(function(){
       var a=aCollection.find({
-        $orderBy:{cost:-1}
+        $orderBy:{date:-1}
       });
       for(var i=0;i<a.length;i++){
         var use=a[i].use;
