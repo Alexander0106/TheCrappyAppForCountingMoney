@@ -38,7 +38,7 @@
     }
     $("#allrecordsload").click(function(){
       $("#a tr").remove();
-      var a=aCollection.find({
+      var a=aCollection.find(,{
         $orderBy:{date:-1}
       });
       for(var i=0;i<a.length;i++){
