@@ -13,13 +13,13 @@
 <body>
   <h1>Change Record</h1>
   <h4>From:</h4>
-  Use: <input type="text" id="changeuse1">
+  <span>Use: </span><input type="text" id="changeuse1" class="input">
   <br>
-  Cost: <input type="text" id="changecost1">
+  <span>Cost: </span><input type="text" id="changecost1" class="input">
   <br>
-  Date: <input type="date" id="changedate1">
+  <span>Date: </span><input type="date" id="changedate1" class="input">
   <br>
-  Type: <select id="changetype1">
+  <span>Type: </span><select id="changetype1" class="input">
     <option value=""></option>
     <option value="food">Food</option>
     <option value="transportation">Transportation</option>
@@ -28,13 +28,13 @@
     <option value="others">Others</option>
   </select>
   <h4>To:</h4>
-  Use: <input type="text" id="changeuse2">
+  <span>Use: </span><input type="text" id="changeuse2" class="input">
   <br>
-  Cost: <input type="text" id="changecost2">
+  <span>Cost: </span><input type="text" id="changecost2" class="input">
   <br>
-  Date: <input type="date" id="changedate2">
+  <span>Date: </span><input type="date" id="changedate2" class="input">
   <br>
-  Type: <select id="changetype2">
+  <span>Type: </span><select id="changetype2" class="input">
     <option value=""></option>
     <option value="food">Food</option>
     <option value="transportation">Transportation</option>
@@ -44,8 +44,8 @@
   </select>
   <br>
   <br>
-  <button class="btn btn-primary" id="changerecordsubmit">Submit</button>
-  <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <button class="btn btn-primary button" id="changerecordsubmit">Submit</button>
+  <button class="btn btn-warning button" onclick="location.href='index.html'">Back</button>
   <script type="text/javascript">
     var fdb = new ForerunnerDB();
     var db = fdb.db("mydb");

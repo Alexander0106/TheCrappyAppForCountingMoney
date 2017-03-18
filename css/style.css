@@ -9,3 +9,13 @@ body{
 span{
   font-size:20px;
 }
+.input{
+  width:50%;
+  height:30px;
+  font-size:20px;
+}
+.button{
+  width:40%;
+  height:50px;
+  font-size:20px;
+}
