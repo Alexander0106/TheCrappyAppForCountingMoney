@@ -12,20 +12,18 @@
 </head>
 <body>
   <h1>Analysis Chart</h1>
-  From: <input type="date" id="chartinput1">
   <br>
-  To: <input type="date" id="chartinput2">
+  <span>From: </span><input type="date" id="chartinput1" class="input">
   <br>
   <br>
-  <button class="btn btn-primary" id="chartsubmit">Submit</button>
-  <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <span>To: </span><input type="date" id="chartinput2" class="input">
   <br>
   <br>
   <h4 id="times"></h4>
   <h4 id="spending"></h4>
   <br>
   <table class="table table-bordered">
-    <thead>
+    <thead id="thead">
       <tr>
         <td>Type</td>
         <td>Price</td>
@@ -36,6 +34,8 @@
     <tbody id="a">
     </tbody>
   </table>
+  <button class="btn btn-primary button" id="chartsubmit">Submit</button>
+  <button class="btn btn-warning button" onclick="location.href='index.html'">Back</button>
   <script type="text/javascript">
     var fdb = new ForerunnerDB();
     var db = fdb.db("mydb");

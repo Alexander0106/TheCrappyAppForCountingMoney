@@ -12,13 +12,11 @@
 </head>
 <body>
   <h1>Search with Date</h1>
-  From: <input type="date" id="dateinput1">
   <br>
-  To: <input type="date" id="dateinput2">
+  <span>From: </span><input type="date" id="dateinput1" class="input">
   <br>
   <br>
-  <button class="btn btn-primary" id="datesubmit">Submit</button>
-  <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <span>To: </span><input type="date" id="dateinput2" class="input">
   <br>
   <br>
   <table class="table table-bordered">
@@ -33,6 +31,8 @@
     <tbody id="a">
     </tbody>
   </table>
+  <button class="btn btn-primary button" id="datesubmit">Submit</button>
+  <button class="btn btn-warning button" onclick="location.href='index.html'">Back</button>
   <script type="text/javascript">
     var fdb = new ForerunnerDB();
     var db = fdb.db("mydb");

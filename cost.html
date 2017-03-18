@@ -12,13 +12,11 @@
 </head>
 <body>
   <h1>Search with Cost</h1>
-  From: <input type="text" id="costinput1">
   <br>
-  To: <input type="text" id="costinput2">
+  <span>From: </span><input type="text" id="costinput1" class="input">
   <br>
   <br>
-  <button class="btn btn-primary" id="costsubmit">Submit</button>
-  <button class="btn btn-warning" onclick="location.href='index.html'">Back</button>
+  <span>To: </span><input type="text" id="costinput2" class="input">
   <br>
   <br>
   <table class="table table-bordered">
@@ -33,6 +31,8 @@
     <tbody id="a">
     </tbody>
   </table>
+  <button class="btn btn-primary button" id="costsubmit">Submit</button>
+  <button class="btn btn-warning button" onclick="location.href='index.html'">Back</button>
   <script type="text/javascript">
     var fdb = new ForerunnerDB();
     var db = fdb.db("mydb");
