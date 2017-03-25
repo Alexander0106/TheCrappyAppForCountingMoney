@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/fdb-all.min.js"></script>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>Chart</title>
+</head>
+<body>
+  <h1>Analysis Chart</h1>
+  <br>
+  <span>From: </span><input type="date" id="chartinput1" class="input">
+  <br>
+  <br>
+  <span>To: </span><input type="date" id="chartinput2" class="input">
+  <br>
+  <br>
+  <h4 id="times"></h4>
+  <h4 id="spending"></h4>
+  <br>
+  <table class="table table-bordered tableclass">
+    <thead id="thead">
+      <tr>
+        <td>Type</td>
+        <td>Price</td>
+        <td>Times(%)</td>
+        <td>Cost(%)</td>
+      </tr>
+    </thead>
+    <tbody id="a">
+    </tbody>
+  </table>
+  <button class="btn btn-primary button" id="chartsubmit">Submit</button>
+  <button class="btn btn-warning button" onclick="location.href='index.html'">Back</button>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    function createString(type,price,times,spending){
+      return "<tr><td>"+type+"</td><td>"+price+"</td><td>"+times+"</td><td>"+spending+"</td></tr>";
+    }
+    $("#chartsubmit").click(function(){
+      $("#a tr").remove();
+      var a=aCollection.find({
+        date:{
+          $gte:$("#chartinput1").val(),
+          $lte:$("#chartinput2").val()
+        }
+      });
+      var ttimes=a.length;
+      var tspending=0;
+      for(var i=0;i<a.length;i++){
+        tspending=tspending+a[i].cost;
+      }
+      $("#times").text("Times: "+ttimes);
+      $("#spending").text("Spending: "+tspending);
+      var j=1;
+      var k="";
+      var g="";
+      while(j<6){
+        if(j==1){
+          k="food";
+          l="Food";
+        }
+        if(j==2){
+          k="transportation";
+          l="Transportation";
+        }
+        if(j==3){
+          k="education";
+          l="Education";
+        }
+        if(j==4){
+          k="deposit";
+          l="Deposit";
+        }
+        if(j==5){
+          k="others";
+          l="Others";
+        }
+        var a=aCollection.find({
+          date:{
+            $gte:$("#chartinput1").val(),
+            $lte:$("#chartinput2").val()
+          },
+          type:k
+        });
+        var type=l;
+        var spending=0;
+        for(var i=0;i<a.length;i++){
+          spending=spending+a[i].cost;
+        }
+        var price=Math.round(spending/a.length);
+        var times=Math.round(a.length/ttimes*100);
+        spending=Math.round(spending/tspending*100);
+        $("#a").append(createString(type,price,times,spending))
+        j=j+1;
+      }
+    });
+  </script>
+</body>
+</html>

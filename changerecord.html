@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/fdb-all.min.js"></script>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>Change Record</title>
+</head>
+<body>
+  <h1>Change Record</h1>
+  <h4>From:</h4>
+  <br>
+  <span>Use: </span><input type="text" id="changeuse1" class="input">
+  <br>
+  <br>
+  <span>Cost: </span><input type="text" id="changecost1" class="input">
+  <br>
+  <br>
+  <span>Date: </span><input type="date" id="changedate1" class="input">
+  <br>
+  <br>
+  <span>Type: </span><select id="changetype1" class="input">
+    <option value=""></option>
+    <option value="food">Food</option>
+    <option value="transportation">Transportation</option>
+    <option value="education">Education</option>
+    <option value="deposit">Deposit</option>
+    <option value="others">Others</option>
+  </select>
+  <br>
+  <h4>To:</h4>
+  <br>
+  <span>Use: </span><input type="text" id="changeuse2" class="input">
+  <br>
+  <br>
+  <span>Cost: </span><input type="text" id="changecost2" class="input">
+  <br>
+  <br>
+  <span>Date: </span><input type="date" id="changedate2" class="input">
+  <br>
+  <br>
+  <span>Type: </span><select id="changetype2" class="input">
+    <option value=""></option>
+    <option value="food">Food</option>
+    <option value="transportation">Transportation</option>
+    <option value="education">Education</option>
+    <option value="deposit">Deposit</option>
+    <option value="others">Others</option>
+  </select>
+  <br>
+  <br>
+  <button class="btn btn-primary button" id="changerecordsubmit">Submit</button>
+  <button class="btn btn-warning button" onclick="location.href='index.html'">Back</button>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    $("#changerecordsubmit").click(function(){
+      if($("#changeuse2").val()==""&&$("#changecost2").val()==""&&$("#changedate2").val()==""&&$("#changetype2").val()==""){
+        aCollection.remove({
+          use:$("#changeuse1").val(),
+          cost:$("#changecost1").val()/1,
+          date:$("#changedate1").val(),
+          type:$("#changetype1").val()
+        });
+      }else{
+        var a=aCollection.find({
+          use:$("#changeuse1").val(),
+          cost:$("#changecost1").val()/1,
+          date:$("#changedate1").val(),
+          type:$("#changetype1").val()
+        })[0];
+        aCollection.updateById(a._id,{
+          use:$("#changeuse2").val(),
+          cost:$("#changecost2").val()/1,
+          date:$("#changedate2").val(),
+          type:$("#changetype2").val()
+        });
+      }
+      $("#changeuse1").val("");
+      $("#changecost1").val("");
+      $("#changedate1").val("");
+      $("#changetype1").val("");
+      $("#changeuse2").val("");
+      $("#changecost2").val("");
+      $("#changedate2").val("");
+      $("#changetype2").val("");
+      aCollection.save();
+    });
+  </script>
+</body>
+</html>

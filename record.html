@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/fdb-all.min.js"></script>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>Record</title>
+</head>
+<body>
+  <h1>Record</h1>
+  <br>
+  <span>Use: </span><input type="text" id="recorduse" class="input">
+  <br>
+  <br>
+  <br>
+  <span>Cost: </span><input type="text" id="recordcost" class="input">
+  <br>
+  <br>
+  <br>
+  <span>Date: </span><input type="date" id="recorddate" class="input">
+  <br>
+  <br>
+  <br>
+  <span>Type: </span><select id="reocrdtype" class="input">
+    <option value=""></option>
+    <option value="food">Food</option>
+    <option value="transportation">Transportation</option>
+    <option value="education">Education</option>
+    <option value="deposit">Deposit</option>
+    <option value="others">Others</option>
+  </select>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button class="btn btn-primary button" id="recordsubmit">Submit</button>
+  <button class="btn btn-warning button" onclick="location.href='index.html'">Back</button>
+  <script type="text/javascript">
+    var fdb = new ForerunnerDB();
+    var db = fdb.db("mydb");
+    var aCollection = db.collection('a');
+    aCollection.load();
+    $("#recordsubmit").click(function(){
+      var aaa={
+        use:$("#recorduse").val(),
+        cost:$("#recordcost").val()/1,
+        date:$("#recorddate").val(),
+        type:$("#reocrdtype").val(),
+      };
+      $("#recorduse").val("");
+      $("#recordcost").val("");
+      $("#recorddate").val("");
+      $("#reocrdtype").val("");
+      aCollection.insert(aaa);
+      aCollection.save();
+    });
+  </script>   
+</body>
+</html>

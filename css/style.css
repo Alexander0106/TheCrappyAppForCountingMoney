@@ -1,0 +1,30 @@
+body{
+  text-align:center;
+}
+.index{
+  width:60%;
+  height:60px;
+  font-size:20px;
+}
+span{
+  font-size:20px;
+}
+.input{
+  width:50%;
+  height:30px;
+  font-size:20px;
+}
+.button{
+  width:40%;
+  height:50px;
+  font-size:20px;
+}
+h4{
+  font-size:25px;
+}
+thead{
+  font-size:20px;
+}
+.thead{
+  font-size:15px;
+}
